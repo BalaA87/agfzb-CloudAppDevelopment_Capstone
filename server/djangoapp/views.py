@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 from .models import CarDealer
 # from .restapis import related methods
-from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf, get_dealer_by_id_from_cf, get_dealers_by_st_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -99,6 +99,7 @@ def get_dealer_details(request, dealer_id):
             "reviews": reviews,
             "dealer_id": dealer_id
         }
+        print(context)
         return render(request, 'djangoapp/dealer_details.html', context)
         
 
