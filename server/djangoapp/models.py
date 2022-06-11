@@ -14,7 +14,6 @@ import datetime
 class CarMake(models.Model):
     name = models.CharField(null=False, max_length=20, primary_key=True)
     desc = models.TextField()
-    logo = models.ImageField()
     def __str__(self):
         return "Name: " + self.name + "," \
                 "Description: " + self.desc
@@ -37,11 +36,11 @@ class CarModel(models.Model):
     year = models.IntegerField(default=datetime.date.today().year) 
     
     def __str__(self):
-        return "Make: " + self.make + "," \
+        return "Make: " + self.make.name + "," \
                 "Name: " + self.name + "," \
-                "Year: " + self.year + "," \
+                "Year: " + str(self.year) + "," \
                 "Type: " + self.model_type + "," \
-                "Dealer ID: " + self.dealer_id + ","
+                "Dealer ID: " + str(self.dealer_id)
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
