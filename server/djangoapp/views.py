@@ -125,14 +125,17 @@ def add_review(request, dealer_id):
             form = request.POST
             review["dealership"] = dealer_id
             review["review"] = form["content"]
-            review["purchase"] = form.get("purchasecheck")
+            if(form.get("purchasecheck") == "on"):
+                review["purchase"] = True
+            else:
+                review["purchase"] = False
             if(review["purchase"]):
                 review["purchase_date"] = datetime.strptime(form.get("purchasedate"), "%m/%d/%Y").isoformat()
                 car = CarModel.objects.get(pk=form["car"])
                 review["car_make"] = car.make.name
                 review["car_model"] = car.name
                 review["car_year"] = car.year
-            post_url = "https://5c81cac7.us-south.apigw.appdomain.cloud/postreview/api/review"
+            post_url = "https://5c81cac7.us-south.apigw.appdomain.cloud/review/api/postreview"
             json_payload = { "review": review }
             post_request(post_url, json_payload, dealer_id=dealer_id)
             return redirect("djangoapp:dealer_details", dealer_id=dealer_id)

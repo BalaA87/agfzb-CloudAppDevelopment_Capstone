@@ -31,7 +31,7 @@ def post_request(url, json_payload, **kwargs):
     print(json_payload)
     print("POST to {} ".format(url))
     try:
-        response = requests.post(url, json=json_payload["review"])
+        response = requests.post(url, params=kwargs, json=json_payload)
     except:
         print("Network exception occurred")
     status_code = response.status_code
