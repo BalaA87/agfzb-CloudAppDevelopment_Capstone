@@ -117,7 +117,6 @@ def get_dealer_reviews_from_cf(url, dealer_id):
         for review_doc in reviews:
             if(review_doc["purchase"]):
                 review_obj = DealerReview(
-                    id=review_doc["id"],
                     name=review_doc["name"],
                     dealership=review_doc["dealership"],
                     review=review_doc["review"],
@@ -132,7 +131,6 @@ def get_dealer_reviews_from_cf(url, dealer_id):
                 # review_obj.sentiment = analyze_review_sentiments(review_obj.review)
             else:
                 review_obj = DealerReview(
-                    id=review_doc["id"],
                     name=review_doc["name"],
                     dealership=review_doc["dealership"],
                     review=review_doc["review"],
